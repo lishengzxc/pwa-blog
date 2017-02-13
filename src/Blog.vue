@@ -1,7 +1,7 @@
 <template>
   <div class="blog">
     <div class="title">{{title}}</div>
-    <div class="body" v-html="body"></div>
+    <div class="body markdown-body" v-html="body"></div>
   </div>
 </template>
 
@@ -21,13 +21,18 @@ export default {
   },
   data () {
     return {
-      title: '',
-      body: ''
+      title: 'loading',
+      body: 'loading'
     }
   }
 }
 </script>
 
 <style>
+.blog .title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+}
 
 </style>
