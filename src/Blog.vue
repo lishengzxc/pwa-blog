@@ -1,16 +1,28 @@
 <template>
   <div class="blog">
-    i'm blog{{$route.params.id}} content...
+    <div class="title">{{title}}</div>
+    <div class="body" v-html="body"></div>
   </div>
 </template>
 
 <script>
+import { getDetail } from './api';
 
 export default {
   name: 'blog',
+  created: function() {
+    let articleId = this.$route.params.id;
+
+    getDetail(articleId)
+      .then(res => {
+        this.title = res.data.title;
+        this.body = res.data.body;
+      })
+  },
   data () {
     return {
-      
+      title: '',
+      body: ''
     }
   }
 }

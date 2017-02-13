@@ -1,22 +1,16 @@
 <template>
   <li class="item">
-    <router-link :to="link">blog title{{id}}</router-link>
+    <router-link :to="link">{{title}}</router-link>
   </li>
 </template>
 
 <script>
-
 export default {
   name: 'item',
-  props: ['id'],
+  props: ['id', 'title'],
   computed: {
     link: function() {
       return `/blog/${this.id}`
-    }
-  },
-  data () {
-    return {
-      
     }
   }
 }
@@ -32,5 +26,9 @@ export default {
   height: 60px;
   line-height: 60px;
   padding: 0 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
 }
 </style>

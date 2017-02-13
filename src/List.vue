@@ -1,27 +1,28 @@
 <template>
   <ul>
-    <item id="0"></item>
-    <item id="1"></item>
-    <item id="2"></item>
-    <item id="3"></item>
-    <item id="4"></item>
-    <item id="5"></item>
-    <item id="6"></item>
-    <item id="7"></item>
-    <item id="8"></item>
-    <item id="9"></item>
-    <item id="10"></item>
+    <item v-for="item in list" :id="item.id" :title="item.title"></item>
+    
   </ul>
 </template>
 
 <script>
 import Item from './Item.vue'
+import { getList } from './api';
 
 export default {
   name: 'list',
+  created: function () {
+    getList()
+    .then(res => {
+      this.list = res.data.map(item => {
+        let { title, id } = item
+        return { title, id }
+      })
+    })
+  },
   data () {
     return {
-      
+      list: []
     }
   },
   components: {
