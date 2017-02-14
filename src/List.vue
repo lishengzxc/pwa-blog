@@ -33,6 +33,8 @@ let getListHeight = function () {
 }
 
 let fetchData = function () {
+  if (this.fetching) return
+
   this.fetching = true
 
   getList(this.page)
