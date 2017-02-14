@@ -2,6 +2,9 @@
   <div class="blog">
     <div class="title">{{title}}</div>
     <div class="body markdown-body" v-html="body"></div>
+    <div class="loader" v-show="loading">
+      <div class="loading"></div>
+    </div>
   </div>
 </template>
 
@@ -15,14 +18,16 @@ export default {
 
     getDetail(articleId)
       .then(res => {
+        this.loading = false;
         this.title = res.data.title;
         this.body = res.data.body;
       })
   },
   data () {
     return {
-      title: 'loading',
-      body: 'loading'
+      title: '',
+      body: '',
+      loading: true
     }
   }
 }
@@ -35,4 +40,10 @@ export default {
   padding: 15px;
 }
 
+.blog .loader {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
 </style>
