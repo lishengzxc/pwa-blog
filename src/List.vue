@@ -11,8 +11,10 @@
 import Item from './Item.vue'
 import { getList } from './api';
 
+const visibleHeight = document.documentElement.clientHeight
+
 function onScroll() {
-  let bottom = getScrollTop() + getVisibleHeight()
+  let bottom = getScrollTop() + visibleHeight
   let height = getListHeight.apply(this)
 
   if (bottom >= height && this.loading) {
@@ -21,11 +23,7 @@ function onScroll() {
 }
 
 let getScrollTop = function () {
-  return document.documentElement.scrollTop;
-}
-
-let getVisibleHeight = function () {
-  return document.documentElement.clientHeight;
+  return window.pageYOffset
 }
 
 let getListHeight = function () {
